@@ -15,7 +15,7 @@ struct ContentView: View {
             VStack {
                 Text("Bonjour à vous")
                 NavigationLink(destination: ForecastPage()) {
-                    Label( "Voir la météo", systemImage: "weather")
+                    Label( "Voir la météo",  image:"")
                 } .font(.headline)
                     .foregroundColor(.white)
                     .padding()

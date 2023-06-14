@@ -17,8 +17,8 @@ struct ForecasrRow: View {
             .frame(width:width,height: height)
             .foregroundColor(Color.blue.opacity(0.1))
             .overlay(
-                HStack(spacing:4){
-            Text(city.name)
+                HStack(){
+                    Text(city.name)
                 
             Text(forecast)
                 .onAppear{

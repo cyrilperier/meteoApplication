@@ -16,7 +16,7 @@ struct ForecastPage: View {
     @State private var timer: Timer?
     @State private var error : Error? = nil
     @State private var isDisabled = true
-    
+        
     let interval: Double = 10
     let intervalMessage: Double = 6
     
@@ -24,7 +24,7 @@ struct ForecastPage: View {
     let waitingMessages = ["Nous téléchargeons les données","C’est presque fini","Plus que quelques secondes avant d’avoir le résultat"]
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 0) {// J'ai laissé des constante dans le code pour ne pas perdre de temps à créer une class const pour tout mettre dedans mais juste créé une variable pour les élèments important
             ScrollView(.vertical,showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 16) {
                     if showData {
@@ -58,7 +58,7 @@ struct ForecastPage: View {
                     }.disabled(isDisabled)
                     ProgressBar(width: 300,height: 30, percent: percent,color1: Color.blue,color2:Color.purple ).animation(.spring())
                 } else {
-                    Text(error?.localizedDescription ?? "")
+                    Text(error?.localizedDescription ?? "") // J'ai fait une simpple gestion du cas d'erreur en raccourci
                     Button(action: {
                         showData = false
                         cities = []
@@ -83,6 +83,7 @@ struct ForecastPage: View {
     private func fetchData(city: String) {
         //Parse URL
         guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=a29a7e69a4cc6c3db1ee9f0fa482e1bf&units=metric") else { return }
+        // N'ayant pas mis en place la possibilité de se connecter je ne peux pas protéger ma clé pour l'api et je dois la mettre en dur dans le code 
         URLSession.shared.dataTask(with: url) { data, _, error in
             if let data = data {
                 do {
